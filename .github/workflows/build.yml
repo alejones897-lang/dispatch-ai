@@ -31,7 +31,8 @@ jobs:
 
       - name: Verify installed Gradle
         run: gradle --version
-
+      - name: Generate debug keystore
+        run: keytool -genkey -v -keystore debug.keystore -keyalg RSA -keysize 2048 -validity 10000 -alias androiddebugkey -keypass android -storepass android -dname "CN=Debug,O=Android,C=US"
       - name: Build debug APK without repository wrapper
         run: gradle assembleDebug --stacktrace --no-daemon
 
